@@ -43,11 +43,9 @@ class LaracentTest extends TestCase
     {
         $publish = $this->centrifugo->publish('test-channel', ['event' => 'test-event']);
         $this->assertNull($publish);
-        $this->assertEquals(0, \count($publish));
 
         $broadcast = $this->centrifugo->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
         $this->assertNull($broadcast);
-        $this->assertEquals(0, \count($broadcast));
 
         $presence = $this->centrifugo->presence('online:test-channel');
         $this->assertEquals($presence, [
@@ -77,11 +75,9 @@ class LaracentTest extends TestCase
 
         $unsubscribe = $this->centrifugo->unsubscribe('test-channel', '1');
         $this->assertNull($unsubscribe);
-        $this->assertEquals(0, \count($unsubscribe));
 
         $disconnect = $this->centrifugo->disconnect('1');
         $this->assertNull($disconnect);
-        $this->assertEquals(0, \count($disconnect));
 
         $info = $this->centrifugo->info();
         $this->assertArrayHasKey('result', $info);
