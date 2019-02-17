@@ -41,7 +41,7 @@ class LaracentBroadcaster extends Broadcaster
             $channels = is_array($channels) ? $channels : [$channels];
 
             $response = [];
-            $info = json_encode([]);
+            $info = [];
             foreach ($channels as $channel) {
                 $channelName = (substr($channel, 0, 1) === '$') ? substr($channel, 1) : $channel;
 
@@ -95,7 +95,7 @@ class LaracentBroadcaster extends Broadcaster
             unset($payload['socket']);
         }
 
-        $response = $this->centrifugo->broadcast($this->formatChannels($channels), $payload, $socket);
+        $response = $this->centrifugo->broadcast($this->formatChannels($channels), $payload);
 
         if (is_array($response) && !isset($response['error'])) {
             return;
