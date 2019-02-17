@@ -1,8 +1,8 @@
 <?php
 namespace AlexHnydiuk\Laracent\Test;
-use Orchestra\Testbench\TestCase as Orchestra;
+use Tests\TestCase as BaseTestCase;
 use AlexHnydiuk\Laracent\LaracentServiceProvider;
-class TestCase extends Orchestra
+class TestCase extends BaseTestCase
 {
     /**
      * @var AlexHnydiuk\Laracent\Laracent
