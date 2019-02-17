@@ -1,0 +1,45 @@
+sudo: required
+
+language: php
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+
+env:
+  global:
+    - setup=basic
+
+services:
+  - docker
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.0
+      services:
+        - docker
+      env: setup=lowest
+    - php: 7.2
+      services:
+        - docker
+      env: setup=stable
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - docker pull centrifugo/centrifugo
+  - docker run -d --net=host --ulimit nofile=65536:65536 -v $TRAVIS_BUILD_DIR/tests:/centrifugo -p 8000:8000 centrifugo/centrifugo centrifugo -c config.json
+  - docker ps -a
+  - travis_retry composer self-update
+
+install:
+  - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
+  - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --no-suggest --prefer-stable; fi
+  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --no-suggest --prefer-stable --prefer-lowest; fi
+
+script: vendor/bin/phpunit
