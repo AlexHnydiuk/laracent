@@ -41,41 +41,47 @@ class LaracentTest extends TestCase
     
     public function testCentrifugeApi()
     {
-        // $publish = $this->centrifugo->publish('test-channel', ['event' => 'test-event']);
-        // $this->assertNull($publish);
+        $publish = $this->centrifugo->publish('test-channel', ['event' => 'test-event']);
+        $this->assertInternalType('array', $publish);
+        $this->assertEquals(0, \count($publish));
 
-        // $broadcast = $this->centrifugo->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
-        // $this->assertNull($broadcast);
+        $broadcast = $this->centrifugo->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
+        $this->assertInternalType('array', $broadcast);
+        $this->assertEquals(0, \count($broadcast));
 
-        // $presence = $this->centrifugo->presence('online:test-channel');
-        // $this->assertInternalType('array', $presence);
-        // $this->assertArrayHasKey('result', $presence);
-        // $this->assertArrayHasKey('presence', $presence['result']);
-        // $this->assertNull($presence['result']['presence']);
+        $presence = $this->centrifugo->presence('online:test-channel');
+        $this->assertInternalType('array', $presence);
+        $this->assertArrayHasKey('result', $presence);
+        $this->assertArrayHasKey('presence', $presence['result']);
+        $this->assertInternalType('array', $presence['result']['presence']);
+        $this->assertEquals(0, \count($presence['result']['presence']));
 
-        // $presenceError = $this->centrifugo->presence('test-channel');
-        // $this->assertInternalType('array', $presenceError);
-        // $this->assertArrayHasKey('error', $presenceError);
-        // $this->assertArrayHasKey('code', $presenceError['error']);
-        // $this->assertArrayHasKey('message', $presenceError['error']);
-        // $this->assertEquals($presenceError['error']['code'], 108);
-        // $this->assertEquals($presenceError['error']['message'], 'not available');
+        $presenceError = $this->centrifugo->presence('test-channel');
+        $this->assertInternalType('array', $presenceError);
+        $this->assertArrayHasKey('error', $presenceError);
+        $this->assertArrayHasKey('code', $presenceError['error']);
+        $this->assertArrayHasKey('message', $presenceError['error']);
+        $this->assertEquals($presenceError['error']['code'], 108);
+        $this->assertEquals($presenceError['error']['message'], 'not available');
 
-        // $history = $this->centrifugo->history('test-channel');
-        // $this->assertEquals($history['error']['code'], 108);
-        // $this->assertEquals($history['error']['message'], 'not available');
+        $history = $this->centrifugo->history('test-channel');
+        $this->assertEquals($history['error']['code'], 108);
+        $this->assertEquals($history['error']['message'], 'not available');
 
-        // $channels = $this->centrifugo->channels();
-        // $this->assertInternalType('array', $channels);
-        // $this->assertArrayHasKey('result', $channels);
-        // $this->assertArrayHasKey('channels', $channels['result']);
-        // $this->assertNull($channels['result']['channels']);
+        $channels = $this->centrifugo->channels();
+        $this->assertInternalType('array', $channels);
+        $this->assertArrayHasKey('result', $channels);
+        $this->assertArrayHasKey('channels', $channels['result']);
+        $this->assertInternalType('array', $channels['result']['channels']);
+        $this->assertEquals(0, \count($channels['result']['channels']));
 
-        // $unsubscribe = $this->centrifugo->unsubscribe('test-channel', '1');
-        // $this->assertNull($unsubscribe);
+        $unsubscribe = $this->centrifugo->unsubscribe('test-channel', '1');
+        $this->assertInternalType('array', $unsubscribe);
+        $this->assertEquals(0, \count($unsubscribe));
 
-        // $disconnect = $this->centrifugo->disconnect('1');
-        // $this->assertNull($disconnect);
+        $disconnect = $this->centrifugo->disconnect('1');
+        $this->assertInternalType('array', $disconnect);
+        $this->assertEquals(0, \count($disconnect));
 
         $info = $this->centrifugo->info();
         $this->assertArrayHasKey('result', $info);
