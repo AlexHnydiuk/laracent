@@ -39,54 +39,54 @@ class LaracentTest extends TestCase
         $this->assertEquals('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjaGFubmVsIjoidGVzdC1jaGFubmVsIiwiY2xpZW50IjoiMGM5NTEzMTUtYmUwZS00NTE2LWI5OWUtMDVlNjBiMGNjMzA3IiwiaW5mbyI6eyJmaXJzdF9uYW1lIjoiQWxleCIsImxhc3RfbmFtZSI6IkhueWRpdWsifX0.3BNbQ1WS7dWhtbjvULd2Vg6GJpKHIbN6HiUr9eRqgpA', $clientToken4);
     }
     
-    // public function testCentrifugeApi()
-    // {
-    //     $publish = $this->centrifugo->publish('test-channel', ['event' => 'test-event']);
-    //     $this->assertNull($publish);
+    public function testCentrifugeApi()
+    {
+        // $publish = $this->centrifugo->publish('test-channel', ['event' => 'test-event']);
+        // $this->assertNull($publish);
 
-    //     $broadcast = $this->centrifugo->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
-    //     $this->assertNull($broadcast);
+        // $broadcast = $this->centrifugo->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
+        // $this->assertNull($broadcast);
 
-    //     $presence = $this->centrifugo->presence('online:test-channel');
-    //     $this->assertInternalType('array', $presence);
-    //     $this->assertArrayHasKey('result', $presence);
-    //     $this->assertArrayHasKey('presence', $presence['result']);
-    //     $this->assertNull($presence['result']['presence']);
+        // $presence = $this->centrifugo->presence('online:test-channel');
+        // $this->assertInternalType('array', $presence);
+        // $this->assertArrayHasKey('result', $presence);
+        // $this->assertArrayHasKey('presence', $presence['result']);
+        // $this->assertNull($presence['result']['presence']);
 
-    //     $presenceError = $this->centrifugo->presence('test-channel');
-    //     $this->assertInternalType('array', $presenceError);
-    //     $this->assertArrayHasKey('error', $presenceError);
-    //     $this->assertArrayHasKey('code', $presenceError['error']);
-    //     $this->assertArrayHasKey('message', $presenceError['error']);
-    //     $this->assertEquals($presenceError['error']['code'], 108);
-    //     $this->assertEquals($presenceError['error']['message'], 'not available');
+        // $presenceError = $this->centrifugo->presence('test-channel');
+        // $this->assertInternalType('array', $presenceError);
+        // $this->assertArrayHasKey('error', $presenceError);
+        // $this->assertArrayHasKey('code', $presenceError['error']);
+        // $this->assertArrayHasKey('message', $presenceError['error']);
+        // $this->assertEquals($presenceError['error']['code'], 108);
+        // $this->assertEquals($presenceError['error']['message'], 'not available');
 
-    //     $history = $this->centrifugo->history('test-channel');
-    //     $this->assertEquals($history['error']['code'], 108);
-    //     $this->assertEquals($history['error']['message'], 'not available');
+        // $history = $this->centrifugo->history('test-channel');
+        // $this->assertEquals($history['error']['code'], 108);
+        // $this->assertEquals($history['error']['message'], 'not available');
 
-    //     $channels = $this->centrifugo->channels();
-    //     $this->assertInternalType('array', $channels);
-    //     $this->assertArrayHasKey('result', $channels);
-    //     $this->assertArrayHasKey('channels', $channels['result']);
-    //     $this->assertNull($channels['result']['channels']);
+        // $channels = $this->centrifugo->channels();
+        // $this->assertInternalType('array', $channels);
+        // $this->assertArrayHasKey('result', $channels);
+        // $this->assertArrayHasKey('channels', $channels['result']);
+        // $this->assertNull($channels['result']['channels']);
 
-    //     $unsubscribe = $this->centrifugo->unsubscribe('test-channel', '1');
-    //     $this->assertNull($unsubscribe);
+        // $unsubscribe = $this->centrifugo->unsubscribe('test-channel', '1');
+        // $this->assertNull($unsubscribe);
 
-    //     $disconnect = $this->centrifugo->disconnect('1');
-    //     $this->assertNull($disconnect);
+        // $disconnect = $this->centrifugo->disconnect('1');
+        // $this->assertNull($disconnect);
 
-    //     $info = $this->centrifugo->info();
-    //     $this->assertArrayHasKey('result', $info);
-    //     $this->assertArrayHasKey('nodes', $info['result']);
-    //     $this->assertArrayHasKey('uid', $info['result']['nodes'][0]);
-    //     $this->assertArrayHasKey('name', $info['result']['nodes'][0]);
-    //     $this->assertArrayHasKey('version', $info['result']['nodes'][0]);
-    //     $this->assertArrayHasKey('num_clients', $info['result']['nodes'][0]);
-    //     $this->assertArrayHasKey('num_channels', $info['result']['nodes'][0]);
-    //     $this->assertArrayHasKey('uptime', $info['result']['nodes'][0]);
-    //     $this->assertArrayHasKey('metrics', $info['result']['nodes'][0]);
+        $info = $this->centrifugo->info();
+        $this->assertArrayHasKey('result', $info);
+        $this->assertArrayHasKey('nodes', $info['result']);
+        $this->assertArrayHasKey('uid', $info['result']['nodes'][0]);
+        $this->assertArrayHasKey('name', $info['result']['nodes'][0]);
+        $this->assertArrayHasKey('version', $info['result']['nodes'][0]);
+        $this->assertArrayHasKey('num_clients', $info['result']['nodes'][0]);
+        $this->assertArrayHasKey('num_channels', $info['result']['nodes'][0]);
+        $this->assertArrayHasKey('uptime', $info['result']['nodes'][0]);
+        $this->assertArrayHasKey('metrics', $info['result']['nodes'][0]);
 
-    // }
+    }
 }
