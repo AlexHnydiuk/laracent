@@ -42,10 +42,12 @@ class LaracentTest extends TestCase
     public function testCentrifugeApi()
     {
         $publish = $this->centrifugo->publish('test-channel', ['event' => 'test-event']);
-        $this->assertEquals($publish, []);
+        $this->assertInternalType('array', $publish);
+        $this->assertEquals(0, \count($publish));
 
         $broadcast = $this->centrifugo->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
-        $this->assertEquals($broadcast, []);
+        $this->assertInternalType('array', $broadcast);
+        $this->assertEquals(0, \count($broadcast));
 
         $presence = $this->centrifugo->presence('online:test-channel');
         $this->assertEquals($presence, [
@@ -74,10 +76,12 @@ class LaracentTest extends TestCase
         ]);
 
         $unsubscribe = $this->centrifugo->unsubscribe('test-channel', '1');
-        $this->assertEquals($unsubscribe, []);
+        $this->assertInternalType('array', $unsubscribe);
+        $this->assertEquals(0, \count($unsubscribe));
 
         $disconnect = $this->centrifugo->disconnect('1');
-        $this->assertEquals($disconnect, []);
+        $this->assertInternalType('array', $disconnect);
+        $this->assertEquals(0, \count($disconnect));
 
         $info = $this->centrifugo->info();
         $this->assertArrayHasKey('result', $info);
