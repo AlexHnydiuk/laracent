@@ -48,30 +48,28 @@ class LaracentTest extends TestCase
         $this->assertNull($broadcast);
 
         $presence = $this->centrifugo->presence('online:test-channel');
-        $this->assertEquals($presence, [
-            "result" => [
-                "presence" => [],
-            ],
-        ]);
+        $this->assertInternalType('array', $presence);
+        $this->assertArrayHasKey('result', $presence);
+        $this->assertArrayHasKey('presence', $presence['result']);
+        $this->assertNull($presence['result']['presence']);
 
         $presenceError = $this->centrifugo->presence('test-channel');
-        $this->assertEquals($presenceError, [
-            'error' => [
-                "code" => 108,
-                "message" => "not available",
-            ],
-        ]);
+        $this->assertInternalType('array', $presenceError);
+        $this->assertArrayHasKey('error', $presenceError);
+        $this->assertArrayHasKey('code', $presenceError['error']);
+        $this->assertArrayHasKey('message', $presenceError['error']);
+        $this->assertEquals($presenceError['error']['code'], 108);
+        $this->assertEquals($presenceError['error']['message'], 'not available');
 
         $history = $this->centrifugo->history('test-channel');
         $this->assertEquals($history['error']['code'], 108);
         $this->assertEquals($history['error']['message'], 'not available');
 
         $channels = $this->centrifugo->channels();
-        $this->assertEquals($channels, [
-            "result" => [
-                "channels" => [],
-            ],
-        ]);
+        $this->assertInternalType('array', $channels);
+        $this->assertArrayHasKey('result', $channels);
+        $this->assertArrayHasKey('channels', $channels['result']);
+        $this->assertNull($channels['result']['channels']);
 
         $unsubscribe = $this->centrifugo->unsubscribe('test-channel', '1');
         $this->assertNull($unsubscribe);
