@@ -1,5 +1,5 @@
 filter:
-    excluded_paths: [tests/*]
+    excluded_paths: [vendor/*, tests/*]
 checks:
     php:
         code_rating: true
@@ -16,18 +16,30 @@ checks:
         fix_line_ending: true
         fix_identation_4spaces: true
         fix_doc_comments: true
+        uppercase_constants: true
+        use_self_instead_of_fqcn: true
+        simplify_boolean_return: true
+        return_doc_comments: true
+        return_doc_comment_if_not_inferrable: true
+        phpunit_assertions: true
+        parameters_in_camelcaps: true
+        parameter_doc_comments: true
+        param_doc_comment_if_not_inferrable: true
+        optional_parameters_at_the_end: true
+        newline_at_end_of_file: true
+        encourage_single_quotes: true
 tools:
     external_code_coverage: false
     php_analyzer: true
     php_code_coverage: false
     php_code_sniffer:
         config:
-            standard: PSR2
+            standard: PSR4
         filter:
             paths: ['src']
     php_loc:
         enabled: true
-        excluded_dirs: [vendor, tests]
+        filter:
+            paths: ['src']
     php_cpd:
         enabled: true
-excluded_dirs: [vendor, tests]
