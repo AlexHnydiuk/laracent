@@ -2,14 +2,12 @@
 
 namespace AlexHnydiuk\Laracent;
 
-use Exception;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use AlexHnydiuk\Laracent\Contracts\Centrifugo;
 
 class Laracent implements Centrifugo
 {
-
     const API_PATH = '/api';
 
     /**
@@ -85,6 +83,7 @@ class Laracent implements Centrifugo
     public function broadcast(array $channels, array $data)
     {
         $params = ['channels' => $channels, 'data' => $data];
+
         return $this->send('broadcast', $params);
     }
 
@@ -141,7 +140,7 @@ class Laracent implements Centrifugo
      * @param string $user
      * @return mixed
      */
-    public function unsubscribe(string $channel,  string $user)
+    public function unsubscribe(string $channel, string $user)
     {
         return $this->send('unsubscribe', [
             'channel' => $channel,
@@ -192,7 +191,7 @@ class Laracent implements Centrifugo
     {
         $header = ['typ' => 'JWT', 'alg' => 'HS256'];
         $payload = ['sub' => $userId];
-        if (!empty($info)) {
+        if (! empty($info)) {
             $payload['info'] = $info;
         }
         if ($exp) {
@@ -204,6 +203,7 @@ class Laracent implements Centrifugo
         $signing_input = implode('.', $segments);
         $signature = $this->sign($signing_input, $this->getSecret());
         $segments[] = $this->urlsafeB64Encode($signature);
+
         return implode('.', $segments);
     }
 
@@ -220,7 +220,7 @@ class Laracent implements Centrifugo
     {
         $header = ['typ' => 'JWT', 'alg' => 'HS256'];
         $payload = ['channel' => $channel, 'client' => $client];
-        if (!empty($info)) {
+        if (! empty($info)) {
             $payload['info'] = $info;
         }
         if ($exp) {
@@ -232,6 +232,7 @@ class Laracent implements Centrifugo
         $signing_input = implode('.', $segments);
         $signature = $this->sign($signing_input, $this->getSecret());
         $segments[] = $this->urlsafeB64Encode($signature);
+
         return implode('.', $segments);
     }
 
@@ -254,12 +255,11 @@ class Laracent implements Centrifugo
      */
     protected function send($method, array $params = [])
     {
-        
         $json = json_encode(['method' => $method, 'params' => $params]);
 
         $headers = [
             'Content-type'  => 'application/json',
-            'Authorization' => 'apikey ' . $this->config['apikey'],
+            'Authorization' => 'apikey '.$this->config['apikey'],
         ];
 
         try {

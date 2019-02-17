@@ -91,7 +91,7 @@ class LaracentBroadcaster extends Broadcaster
 
         $response = $this->centrifugo->broadcast($this->formatChannels($channels), $payload);
 
-        if (is_array($response) && !isset($response['error'])) {
+        if (is_array($response) && ! isset($response['error'])) {
             return;
         }
 
