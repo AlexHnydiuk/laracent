@@ -30,7 +30,7 @@ class LaracentServiceProvider extends ServiceProvider
         $this->app->singleton('centrifugo', function ($app) {
             $config = $app->make('config')->get('broadcasting.connections.centrifugo');
             $http = new HttpClient();
-            
+			
             return new Laracent($config, $http);
         });
 
