@@ -1,0 +1,18 @@
+{
+    "address": "localhost",
+    "anonymous": true,
+    "engine": "memory",
+    "port": 8000,
+    "secret": "d7bcb1a8-a535-4115-b0cc-21ee53318842",
+    "api_key": "7519cb23-f48c-4bfd-afbe-d99424bed6be",
+    "admin_password": "d0558d40-b829-4fef-82a6-2b07061d81d4",
+    "admin_secret": "6798bba4-6e97-492e-a600-44a6a5d4d600",
+    "namespaces": [
+        { 
+          "name": "online",
+          "anonymous": true,
+          "presence": true,
+          "join_leave": true
+        }
+    ]
+}
