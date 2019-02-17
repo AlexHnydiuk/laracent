@@ -89,12 +89,6 @@ class LaracentBroadcaster extends Broadcaster
     {
         $payload['event'] = $event;
 
-        $socket = null;
-        if (array_key_exists('socket', $payload)) {
-            $socket = $payload['socket'];
-            unset($payload['socket']);
-        }
-
         $response = $this->centrifugo->broadcast($this->formatChannels($channels), $payload);
 
         if (is_array($response) && !isset($response['error'])) {
