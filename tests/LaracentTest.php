@@ -1,5 +1,7 @@
 <?php
+
 namespace AlexHnydiuk\Laracent\Test;
+
 class LaracentTest extends TestCase
 {
     public function testGenerateConnectionToken()
@@ -38,7 +40,7 @@ class LaracentTest extends TestCase
         $clientToken4 = $this->centrifugo->generatePrivateChannelToken($client, $channel, 0, $info);
         $this->assertEquals('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjaGFubmVsIjoidGVzdC1jaGFubmVsIiwiY2xpZW50IjoiMGM5NTEzMTUtYmUwZS00NTE2LWI5OWUtMDVlNjBiMGNjMzA3IiwiaW5mbyI6eyJmaXJzdF9uYW1lIjoiQWxleCIsImxhc3RfbmFtZSI6IkhueWRpdWsifX0.3BNbQ1WS7dWhtbjvULd2Vg6GJpKHIbN6HiUr9eRqgpA', $clientToken4);
     }
-    
+
     public function testCentrifugeApi()
     {
         $publish = $this->centrifugo->publish('test-channel', ['event' => 'test-event']);
@@ -93,6 +95,5 @@ class LaracentTest extends TestCase
         $this->assertArrayHasKey('num_channels', $info['result']['nodes'][0]);
         $this->assertArrayHasKey('uptime', $info['result']['nodes'][0]);
         $this->assertArrayHasKey('metrics', $info['result']['nodes'][0]);
-
     }
 }

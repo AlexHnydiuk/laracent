@@ -1,24 +1,30 @@
 <?php
+
 namespace AlexHnydiuk\Laracent\Test;
+
 use Orchestra\Testbench\TestCase as Orchestra;
 use AlexHnydiuk\Laracent\LaracentServiceProvider;
+
 class TestCase extends Orchestra
 {
     /**
      * @var AlexHnydiuk\Laracent\Laracent
      */
     protected $centrifugo;
+
     public function setUp()
     {
         parent::setUp();
         $this->centrifugo = $this->app->make('centrifugo');
     }
+
     protected function getPackageProviders($app)
     {
         return [
             LaracentServiceProvider::class,
         ];
     }
+
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('broadcasting.default', 'centrifugo');
