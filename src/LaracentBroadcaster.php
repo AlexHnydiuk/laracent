@@ -36,27 +36,20 @@ class LaracentBroadcaster extends Broadcaster
     public function auth($request)
     {
         if ($request->user()) {
-            $client = $request->get('client', '');
-            $channels = $request->get('channels', []);
-            $channels = is_array($channels) ? $channels : [$channels];
+            $client = $this->getClientFromRequest($request);
+            $channels = $this->getChannelsFromRequest($request);
 
             $response = [];
-            $info = [];
             foreach ($channels as $channel) {
-                $channelName = (substr($channel, 0, 1) === '$') ? substr($channel, 1) : $channel;
+                $channelName = $this->getChannelName($channel);
 
                 try {
-                    $result = $this->verifyUserCanAccessChannel($request, $channelName);
+                    $is_access_granted = $this->verifyUserCanAccessChannel($request, $channelName);
                 } catch (HttpException $e) {
-                    $result = false;
+                    $is_access_granted = false;
                 }
 
-                $response[$channel] = $result ? [
-                    'sign' => $this->centrifugo->generateConnectionToken($client, 0, $info),
-                    'info' => $info,
-                ] : [
-                    'status' => 403,
-                ];
+                $response[$channel] = $this->makeResponseForClient($is_access_granted);
             }
 
             return response()->json($response);
@@ -98,5 +91,59 @@ class LaracentBroadcaster extends Broadcaster
         throw new BroadcastException(
             $response['error'] instanceof Exception ? $response['error']->getMessage() : $response['error']
         );
+    }
+
+    /**
+     * Get client from request
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return string
+     */
+    private function getClientFromRequest($request)
+    {
+        return $request->get('client', '');
+    }
+
+    /**
+     * Get channels from request
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    private function getChannelsFromRequest($request)
+    {
+        $channels = $request->get('channels', []);
+
+        return is_array($channels) ? $channels : [$channels];
+    }
+
+    /**
+     * Get channel name without $ symbol (if present)
+     *
+     * @param  string  $channel
+     * @return string
+     */
+    private function getChannelName(string $channel)
+    {
+        return (substr($channel, 0, 1) === '$') ? substr($channel, 1) : $channel;
+    }
+
+    /**
+     * Make response for client, based on access rights
+     *
+     * @param  bool  $access_granted
+     * @param  string $client
+     * @return array
+     */
+    private function makeResponseForClient(bool $access_granted, string $client)
+    {
+        $info = [];
+
+        return $access_granted ? [
+            'sign' => $this->centrifugo->generateConnectionToken($client, 0, $info),
+            'info' => $info,
+        ] : [
+            'status' => 403,
+        ];
     }
 }
