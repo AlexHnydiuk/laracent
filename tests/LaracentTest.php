@@ -96,4 +96,5 @@ class LaracentTest extends TestCase
         $this->assertArrayHasKey('uptime', $info['result']['nodes'][0]);
         $this->assertArrayHasKey('metrics', $info['result']['nodes'][0]);
     }
+
 }
