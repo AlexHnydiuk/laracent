@@ -16,7 +16,7 @@
         "source": "https://github.com/AlexHnydiuk/laracent"
     },
     "require": {
-        "php": ">=7.2.12",
+        "php": ">=5.6.32",
         "guzzlehttp/guzzle": "^6.2",
         "illuminate/broadcasting": "^5.3"
     },
