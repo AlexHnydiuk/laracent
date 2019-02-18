@@ -1,15 +1,15 @@
 <h1 align="center">LARAvel + CENTrifugo = Laracent</h1>
 <h2 align="center">Centrifugo broadcast driver for Laravel 5</h2>
-<!--
+
 <p align="center">
 <a href="https://travis-ci.org/AlexHnydiuk/laracent"><img src="https://travis-ci.org/AlexHnydiuk/laracent.svg?branch=master" alt="Build Status"></a>
 <a href="https://github.com/AlexHnydiuk/laracent/releases"><img src="https://img.shields.io/github/release/AlexHnydiuk/laracent.svg?style=flat-square" alt="Latest Version"></a>
 <a href="https://scrutinizer-ci.com/g/AlexHnydiuk/laracent"><img src="https://img.shields.io/scrutinizer/g/AlexHnydiuk/laracent.svg?style=flat-square" alt="Quality Score"></a>
-<a href="https://styleci.io/repos/77400544"><img src="https://styleci.io/repos/77400544/shield" alt="StyleCI"></a>
-<a href="https://packagist.org/packages/AlexHnydiuk/laracent"><img src="https://img.shields.io/packagist/dt/AlexHnydiuk/laracent.svg?style=flat-square" alt="Total Downloads"></a>
+<a href="https://github.styleci.io/repos/171129986"><img src="https://github.styleci.io/repos/171129986/shield?branch=master" alt="StyleCI"></a>
+<a href="https://packagist.org/packages/alex-hnydiuk/laracent"><img src="https://img.shields.io/packagist/dt/alex-hnydiuk/laracent.svg?style=flat-square" alt="Total Downloads"></a>
 <a href="https://github.com/AlexHnydiuk/laracent/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Software License"></a>
 </p>
--->
+
 
 ## Introduction
 Centrifugo broadcaster for laravel >= 5.7 is fork of [centrifuge-broadcaster](https://github.com/LaraComponents/centrifuge-broadcaster), based on:
