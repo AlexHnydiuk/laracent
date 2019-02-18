@@ -99,14 +99,4 @@ class LaracentBroadcaster extends Broadcaster
             $response['error'] instanceof Exception ? $response['error']->getMessage() : $response['error']
         );
     }
-
-    /**
-     * Get the Centrifugo instance.
-     *
-     * @return \AlexHnydiuk\Laracent\Contracts\Centrifugo
-     */
-    public function getCentrifugo()
-    {
-        return $this->centrifugo;
-    }
 }
