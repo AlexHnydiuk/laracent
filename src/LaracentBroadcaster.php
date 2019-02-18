@@ -49,7 +49,7 @@ class LaracentBroadcaster extends Broadcaster
                     $is_access_granted = false;
                 }
 
-                $response[$channel] = $this->makeResponseForClient($is_access_granted);
+                $response[$channel] = $this->makeResponseForClient($is_access_granted, $client);
             }
 
             return response()->json($response);
