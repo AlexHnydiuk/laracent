@@ -35,5 +35,4 @@ class TestCase extends Orchestra
             'url' => 'http://localhost:8000',
         ]);
     }
-
 }
