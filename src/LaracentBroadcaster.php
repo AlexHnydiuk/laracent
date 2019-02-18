@@ -94,7 +94,7 @@ class LaracentBroadcaster extends Broadcaster
     }
 
     /**
-     * Get client from request
+     * Get client from request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return string
@@ -105,7 +105,7 @@ class LaracentBroadcaster extends Broadcaster
     }
 
     /**
-     * Get channels from request
+     * Get channels from request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -118,7 +118,7 @@ class LaracentBroadcaster extends Broadcaster
     }
 
     /**
-     * Get channel name without $ symbol (if present)
+     * Get channel name without $ symbol (if present).
      *
      * @param  string  $channel
      * @return string
@@ -129,7 +129,7 @@ class LaracentBroadcaster extends Broadcaster
     }
 
     /**
-     * Make response for client, based on access rights
+     * Make response for client, based on access rights.
      *
      * @param  bool  $access_granted
      * @param  string $client
