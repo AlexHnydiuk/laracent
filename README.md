@@ -18,8 +18,8 @@ Centrifugo broadcaster for laravel >= 5.7 is fork of [centrifuge-broadcaster](ht
 
 ## Changenotes
 - predis/predis removed from dependencies
-- Removed all code, connected to Redis
-- Updated public function's code accordingly to new  version of Centrifugo API  
+- Removed all code, related to Redis
+- Updated public functions code in accordance with new version of Centrifugo API  
 
 ## Requirements
 
@@ -64,14 +64,14 @@ Open your config/broadcasting.php and add new connection like this:
     ],
 ```
 
-Also you should add this two lines to your .env file:
+Also you should add these two lines to your .env file:
 
 ```
 CENTRIFUGO_SECRET=very-long-secret-key-from-centrifugo-config
 CENTRIFUGO_APIKEY=long-secret-apikey-from-centrifugo-config
 ```
 
-This lines are optional:
+These lines are optional:
 ```
 CENTRIFUGO_URL=http://localhost:8000
 CENTRIFUGO_SSL_KEY=/etc/ssl/some.pem
@@ -86,11 +86,11 @@ BROADCAST_DRIVER=centrifugo
 
 ## Basic Usage
 
-To configure the Centrifugo server, read the [official documentation](https://centrifugal.github.io/centrifugo/)
+To configure Centrifugo server, read [official documentation](https://centrifugal.github.io/centrifugo/)
 
-For broadcasting events, see the [official documentation of laravel](https://laravel.com/docs/5.7/broadcasting)
+For broadcasting events, see [official documentation of laravel](https://laravel.com/docs/5.7/broadcasting)
 
-A simple example of using the client:
+A simple client usage example:
 
 ```php
 <?php
@@ -130,7 +130,7 @@ class ExampleController extends Controller
 | history(string $channel) | Get channel history information (list of last messages sent into channel). |
 | history_remove(string $channel) | Remove channel history information.
 | unsubscribe(string $channel,  string $user) | Unsubscribe user from channel. |
-| disconnect(string $user_id) | Disconnect user by its ID. |
+| disconnect(string $user_id) | Disconnect user by it's ID. |
 | channels() | Get channels information (list of currently active channels). |
 | info() | Get stats information about running server nodes. |
 | generateConnectionToken(string $userId, int $exp, array $info)  | Generate connection token. |
