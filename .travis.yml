@@ -40,6 +40,16 @@ before_install:
   - docker run -d --net=host --ulimit nofile=65536:65536 -v $TRAVIS_BUILD_DIR/tests:/centrifugo -p 8000:8000 centrifugo/centrifugo centrifugo -c config.json
   - docker ps -a
   - travis_retry composer self-update
+#  - composer require "illuminate/contracts:${laravel_ver}" --no-update
+#  - composer require "illuminate/support:${laravel_ver}" --no-update
+#  - composer require "illuminate/filesystem:${laravel_ver}" --no-update
+#  - composer require "illuminate/container:${laravel_ver}" --no-update
+#  - composer require "illuminate/database:${laravel_ver}" --no-update
+#  - composer require "illuminate/console:${laravel_ver}" --no-update
+#  - composer require "illuminate/queue:${laravel_ver}" --no-update
+#  - composer require "illuminate/pipeline:${laravel_ver}" --no-update
+#  - composer require "illuminate/bus:${laravel_ver}" --no-update
+  - composer require "illuminate/broadcasting:${laravel_ver}" --no-update  
 
 install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
