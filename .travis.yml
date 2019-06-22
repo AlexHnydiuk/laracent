@@ -7,10 +7,10 @@ php:
   - 7.3
 
 env:
-  - laravel_ver=5.7.*
-  - laravel_ver=5.8.*
-  - setup=basic
-  - setup=stable
+  - laravel_ver=5.7.* setup=basic
+  - laravel_ver=5.7.* setup=stable
+  - laravel_ver=5.8.* setup=basic
+  - laravel_ver=5.8.* setup=stable
 #  global:
 #    - setup=basic
 
@@ -45,5 +45,6 @@ install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --no-suggest --prefer-stable; fi
   - travis_retry composer require "laravel/framework:${laravel_ver}"
+  - travis retry composer require "phpunit/phpunit"
 
 script: vendor/bin/phpunit
