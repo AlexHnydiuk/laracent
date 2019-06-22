@@ -7,29 +7,13 @@ php:
   - 7.3
 
 env:
-  - laravel_ver=5.7.* setup=basic
-  - laravel_ver=5.7.* setup=stable
-  - laravel_ver=5.8.* setup=basic
-  - laravel_ver=5.8.* setup=stable
-#  global:
-#    - setup=basic
+  - laravel_ver=5.7.* testbench_ver=3.7.* setup=basic
+  - laravel_ver=5.7.* testbench_ver=3.7.* setup=stable
+  - laravel_ver=5.8.* testbench_ver=3.8.* setup=basic
+  - laravel_ver=5.8.* testbench_ver=3.8.* setup=stable
 
 services:
   - docker
-
-#matrix:
-#  fast_finish: true
-#  include:
-#    - php: 7.2
-#      services:
-#        - docker
-#      env: setup=stable laravel_ver=5.7.*
-
-#    - php: 7.3
-#      services:
-#        - docker
-#      env: setup=stable laravel_ver=5.7.*
-
 
 cache:
   directories:
@@ -43,7 +27,7 @@ before_install:
   - composer require "illuminate/broadcasting:${laravel_ver}" --no-update  
   - composer require "laravel/framework:${laravel_ver}" --no-update
   - composer require "phpunit/phpunit"
-  - composer require "orchestra/testbench"
+  - composer require "orchestra/testbench:$(testbench_ver)"
 
 install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
