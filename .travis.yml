@@ -27,7 +27,7 @@ before_install:
   - composer require "illuminate/broadcasting:${laravel_ver}" --no-update  
   - composer require "laravel/framework:${laravel_ver}" --no-update
   - composer require "phpunit/phpunit"
-  - composer require "orchestra/testbench:$(testbench_ver)"
+  - composer require "orchestra/testbench:${testbench_ver}" --no-update
 
 install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
