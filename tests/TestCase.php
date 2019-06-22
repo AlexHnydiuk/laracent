@@ -12,7 +12,7 @@ class TestCase extends Orchestra
      */
     protected $centrifugo;
 
-    public function setUp()
+    public function setUp(): void 
     {
         parent::setUp();
         $this->centrifugo = $this->app->make('centrifugo');
