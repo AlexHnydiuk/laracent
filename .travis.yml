@@ -7,23 +7,29 @@ php:
   - 7.3
 
 env:
-  global:
-    - setup=basic
+  - laravel_ver=5.7.*
+  - laravel_ver=5.8.*
+  - setup=basic
+  - setup=stable
+#  global:
+#    - setup=basic
 
 services:
   - docker
 
-matrix:
-  fast_finish: true
-  include:
-    - php: 7.2
-      services:
-        - docker
-      env: setup=stable
-    - php: 7.3
-      services:
-        - docker
-      env: setup=stable
+#matrix:
+#  fast_finish: true
+#  include:
+#    - php: 7.2
+#      services:
+#        - docker
+#      env: setup=stable laravel_ver=5.7.*
+
+#    - php: 7.3
+#      services:
+#        - docker
+#      env: setup=stable laravel_ver=5.7.*
+
 
 cache:
   directories:
@@ -38,5 +44,6 @@ before_install:
 install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --no-suggest --prefer-stable; fi
+  - travis_retry composer require "laravel/framework:${laravel_ver}"
 
 script: vendor/bin/phpunit
