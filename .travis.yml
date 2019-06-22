@@ -55,6 +55,6 @@ install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --no-suggest --prefer-stable; fi
   - travis_retry composer require "laravel/framework:${laravel_ver}"
-  - travis retry composer require "phpunit/phpunit"
+  - travis_retry composer require "phpunit/phpunit"
 
 script: vendor/bin/phpunit
